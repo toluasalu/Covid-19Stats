@@ -1,24 +1,72 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
+import { Alert, StyleSheet, StatusBar } from "react-native";
+import React from "react";
 
+import { Button, Icon } from "react-native-elements";
+import Onboarding from "react-native-onboarding-swiper";
 
 export default function App() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center' }}>
-      <ImageBackground
-        style={{ flex: 1 }}
-        source={require("./assets/skulls.jpg")}
-      >
-        <View style={styles.detail}>
-          <Text style={{ color: '#fff', fontSize: 35, fontWeight: "bold" }}>CovidStats</Text>
-          <Text style={{ color: 'orange', lineHeight: 25, marginTop: 15, textTransform: 'uppercase' }}>Daily Updates</Text>
-          <View style={styles.button}>
-            <Text style={{ fontWeight: "bold", color: '#fff' }}>Powered by ToolzTech</Text>
-          </View>
-        </View>
-
-      </ImageBackground>
-    </View>
+    <Onboarding
+      showDone={false}
+      onSkip={() => Alert.alert("Skipped")}
+      pages={[
+        {
+          title: "Hey!",
+          subtitle: "Welcome to $App!",
+          backgroundColor: "#003c8f",
+          image: (
+            <Icon
+              name="hand-peace-o"
+              type="font-awesome"
+              size={100}
+              color="white"
+            />
+          ),
+        },
+        {
+          title: "Send Messages",
+          subtitle: "You can reach everybody with us",
+          backgroundColor: "#5e92f3",
+          image: (
+            <Icon
+              name="paper-plane-o"
+              type="font-awesome"
+              size={100}
+              color="white"
+            />
+          ),
+        },
+        {
+          title: "Get Notified",
+          subtitle:
+            "We will send you notification as soon as something happened",
+          backgroundColor: "#1565c0",
+          image: (
+            <Icon name="bell-o" type="font-awesome" size={100} color="white" />
+          ),
+        },
+        {
+          title: "That's Enough",
+          subtitle: (
+            <Button
+              title={"Get Started"}
+              containerViewStyle={{ marginTop: 20 }}
+              backgroundColor={"white"}
+              borderRadius={5}
+              textStyle={{ color: "#003c8f" }}
+              onPress={() => {
+                Alert.alert("done");
+                StatusBar.setBarStyle("default");
+              }}
+            />
+          ),
+          backgroundColor: "#003c8f",
+          image: (
+            <Icon name="rocket" type="font-awesome" size={100} color="white" />
+          ),
+        },
+      ]}
+    />
   );
 }
 
@@ -35,14 +83,14 @@ const styles = StyleSheet.create({
   detail: {
     height: "50%",
     // position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     bottom: 0,
     paddingHorizontal: 40,
   },
   button: {
     marginTop: 15,
     justifyContent: "flex-end",
-    alignItems: "center"
+    alignItems: "center",
   },
 });
